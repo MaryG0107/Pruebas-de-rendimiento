@@ -1,0 +1,18 @@
+# Build artifacts
+bin/
+obj/
+*.user
+
+# IDE
+.vs/
+.vscode/
+
+# Contiene credenciales locales reales (usuario/contraseña de Postgres) - NUNCA subir a git
+**/appsettings.Development.json
+
+# Resultados de JMeter (pueden pesar mucho / contener datos de prueba)
+jmeter/results/
+*.jtl
+
+# Evidencias grandes (capturas, videos) - ajusta si prefieres versionarlas
+evidencias/*.mp4

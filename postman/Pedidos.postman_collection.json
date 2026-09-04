@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Pedidos API - Reto 2",
+    "description": "Colección para probar contratos y respuestas de la API de pedidos (Aseguramiento de Calidad del Software).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5080" }
+  ],
+  "item": [
+    {
+      "name": "Crear pedido (válido)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{baseUrl}}/api/pedidos", "host": ["{{baseUrl}}"], "path": ["api", "pedidos"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": \"Mary Sagui\",\n  \"producto\": \"Laptop Dell\",\n  \"cantidad\": 2\n}"
+        }
+      }
+    },
+    {
+      "name": "Crear pedido (inválido - cantidad negativa)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{baseUrl}}/api/pedidos", "host": ["{{baseUrl}}"], "path": ["api", "pedidos"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": \"Mary Sagui\",\n  \"producto\": \"Laptop Dell\",\n  \"cantidad\": -1\n}"
+        }
+      }
+    },
+    {
+      "name": "Listar pedidos",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/pedidos", "host": ["{{baseUrl}}"], "path": ["api", "pedidos"] }
+      }
+    },
+    {
+      "name": "Listar pedidos por estado",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/pedidos?estado=Completado",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "pedidos"],
+          "query": [ { "key": "estado", "value": "Completado" } ]
+        }
+      }
+    },
+    {
+      "name": "Consultar pedido por id",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/pedidos/00000000-0000-0000-0000-000000000000",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "pedidos", "00000000-0000-0000-0000-000000000000"]
+        },
+        "description": "Reemplaza el id por uno real devuelto al crear un pedido."
+      }
+    },
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] }
+      }
+    }
+  ]
+}
